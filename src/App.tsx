@@ -1,10 +1,15 @@
 import './App.css'
+import Chain from './components/Chain'
 
 function App() {
   return (
-    <div className='px-4 lg:px-12'>
-      <h1>Then When</h1>
-      <p className='p-4 bg-orange-200'>Easily add time</p>
+    <div className='md:grid grid-cols-2 gap-x-16'>
+      <section className="order-2">
+        <h1 className='text-brand-orange text-xl font-medium'>Then When</h1>
+        <p className='text-slate-300'>WIP</p>
+      </section>
+
+      <Chain />
     </div>
   )
 }
