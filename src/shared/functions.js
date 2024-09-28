@@ -1,4 +1,4 @@
-const amOrPm = (date) => date.getHours() >= 12 ? 'PM' : 'AM'
+const amOrPm = (date) => date.getHours() >= 12 ? 'pm' : 'am'
 
 const stringToMinutes = (modifier) => {
   const parts = modifier.split(':')
@@ -12,6 +12,11 @@ const stringToMinutes = (modifier) => {
 
 const zeroPad = (part) => part < 10 ? `0${part}` : part
 
-const formatTime = (date) => `${zeroPad(date.getHours())}:${zeroPad(date.getMinutes())}`
+const formatTime = (date) => `${zeroPad(date.getHours())}:${zeroPad(date.getMinutes())} ${amOrPm(date)}`
 
-export { amOrPm, stringToMinutes, formatTime, zeroPad }
+export {
+  amOrPm,
+  stringToMinutes,
+  formatTime,
+  zeroPad,
+}
