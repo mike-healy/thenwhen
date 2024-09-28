@@ -9,16 +9,18 @@ export default () => {
 
     const addModifier = (value: string) => {
       setModifiers([...modifiers, value])
-    }
+    };
 
     const removeModifier = (index: number) => {}
     const changeModifier = (value: string, index: number) => {}
+
+    const format = (date: Date) => `${date.getHours()}:${date.getMinutes()}`;
 
     return <main className="order-1 bg-slate-100 p-2 rounded-md">
       <div>
 
         <header className='p-6 bg-slate-900 text-brand-orange rounded-t'>
-          8:44am <span className="opacity-70 ml-4">(placeholder)</span>
+          {format(start)} <span className="opacity-70 ml-4">(placeholder)</span>
         </header>
 
         {modifiers.length > 0 && (
@@ -41,7 +43,11 @@ export default () => {
             className='p-2'
           />
           <button
-            onClick={() => addModifier(newModifierRef.current.value)}
+            onClick={() => {
+              addModifier(newModifierRef.current.value)
+              newModifierRef.current.value = ''
+              newModifierRef.current.focus()
+            }}
             className='py-2 px-4 bg-brand-orange-600 text-white'
           >
             Add
