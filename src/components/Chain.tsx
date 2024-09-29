@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { formatTime } from '../shared/functions.js'
 
 export default () => {
@@ -19,7 +19,6 @@ export default () => {
 
     return <main className="order-1 bg-slate-100 p-2 rounded-md">
       <div>
-
         <header className='p-6 bg-slate-900 text-brand-orange rounded-t'>
           {formatTime(start)} <span className="opacity-70 ml-4">(placeholder)</span>
         </header>
