@@ -5,7 +5,7 @@ const stringToMinutes = (modifier) => {
 
   const hours = parseInt(parts[0])
 
-  return hours >= 0
+  return hours >= 0 && parts[0] !== '-0'
     ? hours*60 + parseInt(parts[1])
     : hours*60 - parseInt(parts[1])
 }
