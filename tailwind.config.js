@@ -24,6 +24,9 @@ export default {
           900: '#862d04',
         }
     },
+    fontFamily: {
+      'sans': ['"Akshar"'],
+    },
     extend: {
     },
   },
