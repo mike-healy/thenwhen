@@ -1,13 +1,18 @@
 const amOrPm = (date) => date.getHours() >= 12 ? 'pm' : 'am'
 
 const stringToMinutes = (modifier) => {
+  const emptyToZero = (value) => value === '' ? 0 : value ?? 0
+
   const parts = modifier.split(':')
 
   if (parts.length === 1) {
     return parseInt(parts[0]) * 60;
   }
 
-  const emptyToZero = (value) => value === '' ? 0 : value ?? 0
+  // Negative minutes only
+  if (parts[0] === '-') {
+    return parts[1] * -1;
+  }
 
   parts[0] = emptyToZero(parts[0]);
   parts[1] = emptyToZero(parts[1]);
