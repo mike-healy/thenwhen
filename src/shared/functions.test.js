@@ -24,6 +24,9 @@ test.each([
   { modifier: '3:8', result: 188 },
   { modifier: '-0:15', result: -15 },
   { modifier: '0:15', result: 15 },
+  { modifier: '2', result: 120 },
+  { modifier: '2:', result: 120 },
+  { modifier: ':10', result: 10 },
 ])
 ('modifier string $modifier to minutes', ({ modifier, result }) => {
   expect(stringToMinutes(modifier)).toBe(result)
