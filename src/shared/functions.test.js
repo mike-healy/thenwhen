@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { amOrPm, stringToMinutes } from './functions'
+import { amOrPm, base12Hours, stringToMinutes } from './functions'
 
 test.each([
   { hour: 0, result: 'am' },
@@ -17,7 +17,6 @@ test.each([
 
 test.each([
   { modifier: '1:10', result: 70 },
-  { modifier: '2:0', result: 120 },
   { modifier: '-1:24', result: -84 },
   { modifier: '-01:24', result: -84 },
   { modifier: '168:0', result: 10080 },
@@ -30,7 +29,17 @@ test.each([
   { modifier: ':10', result: 10 },
   { modifier: '-:10', result: -10 },
   { modifier: '-2', result: -120 },
+  { modifier: ':07', result: 7 },
 ])
 ('modifier string $modifier to minutes', ({ modifier, result }) => {
   expect(stringToMinutes(modifier)).toBe(result)
+})
+
+test.each([
+  [9, 9],
+  [12, 12],
+  [13, 1],
+  [23, 11],
+])('converts hour component %s to 12 base', (input, output) => {
+  expect(base12Hours(input)).toBe(output)
 })
