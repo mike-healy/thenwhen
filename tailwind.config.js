@@ -13,6 +13,8 @@ export default {
         current: 'currentColor',
         white: '#fff',
         black: '#000',
+        blue: colors.blue,
+        red: colors.rose,
 
         slate: colors.slate,
         'brand-orange': {
@@ -25,7 +27,7 @@ export default {
         }
     },
     fontFamily: {
-      'sans': ['"Akshar"'],
+      'sans': ['"Aleo"', '"sans-serif"'],
     },
     extend: {
     },
