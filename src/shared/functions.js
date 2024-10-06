@@ -6,7 +6,13 @@ const stringToMinutes = (modifier) => {
   const parts = modifier.split(':')
 
   if (parts.length === 1) {
-    return parseInt(parts[0]) * 60;
+    if (parts[0].toLowerCase().includes('h') && parts[0].toLowerCase().includes('m')) {
+      return stringHMToMinutes(parts[0])
+    }
+
+    return parts[0].toLowerCase().includes('m')
+      ? parseInt(parts[0])
+      : parseInt(parts[0]) * 60;
   }
 
   // Negative minutes only
@@ -23,6 +29,15 @@ const stringToMinutes = (modifier) => {
     ? hours*60 + parseInt(parts[1])
     : hours*60 - parseInt(parts[1])
 }
+
+const stringHMToMinutes = (phrase) => {
+  const parts = phrase.toLowerCase().split('h')
+  const minutes = Math.abs(parseInt(parts[0])) * 60 + parseInt(parts[1])
+
+  return phrase.startsWith('-')
+    ? minutes * -1
+    : minutes;
+};
 
 const zeroPad = (part) => part < 10 ? `0${part}` : part
 
