@@ -86,6 +86,7 @@ export default () => {
               type="text"
               placeholder="HH:MM"
               pattern="[\-0-9:hm ]+"
+              inputMode="numeric"
               ref={newModifierRef}
               className="p-2 rounded-l"
             />
