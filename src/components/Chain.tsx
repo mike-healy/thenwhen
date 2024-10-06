@@ -85,8 +85,9 @@ export default () => {
             <input
               type="text"
               placeholder="HH:MM"
+              pattern="[\-0-9:hm ]+"
               ref={newModifierRef}
-              className='p-2 rounded-l'
+              className="p-2 rounded-l"
             />
             <button
               type="submit"
