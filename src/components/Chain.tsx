@@ -5,7 +5,7 @@ export default () => {
     const newModifierRef = useRef(null);
 
     const [start, setStart] = useState(new Date().getTime());
-    const [modifiers, setModifiers] = useState([]); // '1:00', '2:30', '-0:15'
+    const [modifiers, setModifiers] = useState([]);
     const [stepResults, setStepResults] = useState([
       new Date().getTime(),
     ]);
@@ -48,10 +48,6 @@ export default () => {
             {formatTime(dateFromTime(start))}
           </header>
 
-          {modifiers.length === 0 && (
-            <p className='my-6 text-center text-sm'>Add a time modifier <span className='block'>e.g. 4:00, 4h, 20m, -1:30</span></p>
-          )}
-
           {stepResults.length > 0 && (
             <ul className='mb-6 text-sm'>
               {stepResults.map((result, index) => (
@@ -80,39 +76,27 @@ export default () => {
               newModifierRef.current.value = ''
               newModifierRef.current.focus()
             }}
-            className='text-center p-2'
+            className='text-center md:p-2 my-4'
           >
             <input
               type="text"
               placeholder="HH:MM"
               pattern="[\-0-9:hm ]+"
               ref={newModifierRef}
-              className="p-2 rounded-l"
+              className="p-1 rounded-l"
             />
             <button
               type="submit"
-              className='py-2 px-4 bg-brand-orange-600 text-white rounded-r'
+              className='py-1 px-4 bg-brand-orange-600 text-white rounded-r'
             >
               Add
             </button>
-
-            <section className="p-8 opacity-70 flex flex-col gap-y-4">
-              <input
-                type="text"
-                placeholder="decimal"
-                inputMode='decimal'
-                pattern="[\-0-9:hm ]+"a
-                className="p-1 rounded-l"
-              />
-              <input
-                type="text"
-                placeholder="numeric"
-                inputMode='numeric'
-                pattern="[\-0-9:hm ]+"
-                className="p-1 rounded-l"
-              />
-            </section>
           </form>
+
+          {modifiers.length === 0 && (
+            <p className='my-6 text-center text-sm'>Add a time modifier <span className='block'>e.g. 4:00, 4h, 20m, -1:30</span></p>
+          )}
+
         </div>
       </main>
     )
