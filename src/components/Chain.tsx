@@ -49,7 +49,7 @@ export default () => {
           </header>
 
           {modifiers.length === 0 && (
-            <p className='my-6 text-center'>Add a time modifier <span>e.g. 4:00</span></p>
+            <p className='my-6 text-center text-sm'>Add a time modifier <span className='block'>e.g. 4:00, 4h, 20m, -1:30</span></p>
           )}
 
           {stepResults.length > 0 && (
@@ -86,7 +86,6 @@ export default () => {
               type="text"
               placeholder="HH:MM"
               pattern="[\-0-9:hm ]+"
-              inputMode="decimal"
               ref={newModifierRef}
               className="p-2 rounded-l"
             />
@@ -96,6 +95,23 @@ export default () => {
             >
               Add
             </button>
+
+            <section className="p-8 opacity-70 flex flex-col gap-y-4">
+              <input
+                type="text"
+                placeholder="decimal"
+                inputMode='decimal'
+                pattern="[\-0-9:hm ]+"a
+                className="p-1 rounded-l"
+              />
+              <input
+                type="text"
+                placeholder="numeric"
+                inputMode='numeric'
+                pattern="[\-0-9:hm ]+"
+                className="p-1 rounded-l"
+              />
+            </section>
           </form>
         </div>
       </main>
