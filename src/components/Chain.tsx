@@ -6,6 +6,7 @@ export default () => {
 
     const [start, setStart] = useState(new Date().getTime());
     const [modifiers, setModifiers] = useState([]);
+    const [changeCount, setChangeCount] = useState(0);
     const [stepResults, setStepResults] = useState([
       new Date().getTime(),
     ]);
@@ -29,7 +30,7 @@ export default () => {
 
       setStepResults(calculatedTimes);
 
-    }, [modifiers]);
+    }, [modifiers, changeCount]);
 
     const addModifier = (value: string) => {
       setModifiers([...modifiers, value])
@@ -41,11 +42,30 @@ export default () => {
 
     const changeModifier = (value: string, index: number) => {};
 
+    const setStartTime = (e) => {
+      const time = e.currentTarget.value.split(':')
+
+      const start = new Date()
+      start.setHours(parseInt(time[0]))
+      start.setMinutes(parseInt(time[1]))
+      start.setSeconds(0)
+
+      setStart(start.getTime())
+
+      setChangeCount(changeCount + 1);
+    };
+
     return (
       <main className="order-1 bg-slate-100 p-2 rounded-md max-w-96">
         <div>
-          <header className='p-6 bg-slate-900 text-brand-orange rounded-t'>
-            {formatTime(dateFromTime(start))}
+          <header className='p-6 bg-slate-300 text-blue-800 rounded-t'>
+            <label htmlFor="startTime" className='block mb-2'>Start from or count to&hellip;</label>
+            <input
+              type="time"
+              id="startTime"
+              onBlur={setStartTime}
+              className='bg-transparent p-2'
+            />
           </header>
 
           {stepResults.length > 0 && (
