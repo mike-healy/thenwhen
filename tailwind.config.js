@@ -15,7 +15,6 @@ export default {
         black: '#000',
         blue: colors.blue,
         red: colors.rose,
-
         slate: colors.slate,
         'brand-orange': {
           50: '#fff0eb',
@@ -27,7 +26,7 @@ export default {
         }
     },
     fontFamily: {
-      'sans': ['"Aleo"', '"sans-serif"'],
+      'sans': ['"Abel"', '"sans-serif"'],
     },
     extend: {
     },

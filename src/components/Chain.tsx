@@ -52,20 +52,36 @@ export default () => {
 
       setStart(start.getTime())
 
-      setChangeCount(changeCount + 1);
+      setChangeCount(changeCount + 1)
+    };
+
+    // Cool, but it won't reflect in the UI because React is one-way
+    const startFromNow = () => {
+      const d = new Date()
+      setStart(d.getTime())
+
+      setChangeCount(changeCount + 1)
     };
 
     return (
       <main className="order-1 bg-slate-100 p-2 rounded-md max-w-96">
         <div>
-          <header className='p-6 bg-slate-300 text-blue-800 rounded-t'>
-            <label htmlFor="startTime" className='block mb-2'>Start from or count to&hellip;</label>
-            <input
-              type="time"
-              id="startTime"
-              onBlur={setStartTime}
-              className='bg-transparent p-2'
-            />
+          <header className='px-6 py-4 from-slate-800 to-slate-700 bg-gradient-to-tr text-blue-400 rounded-t'>
+            <label htmlFor="startTime" className='block text-sm'>Start from or count to&hellip;</label>
+            <div className='flex justify-between items-center'>
+              <input
+                type="time"
+                id="startTime"
+                onBlur={setStartTime}
+                className='bg-transparent py-2'
+              />
+              <button
+                onClick={startFromNow}
+                className='px-2 py-.5 bg-blue-200 text-blue-900 rounded text-sm'
+              >
+                now
+              </button>
+            </div>
           </header>
 
           {stepResults.length > 0 && (
@@ -73,10 +89,10 @@ export default () => {
               {stepResults.map((result, index) => (
                 <li
                   key={index}
-                  className='px-6 py-2 even:bg-slate-200 flex items-center gap-x-4 justify-between'
+                  className='px-6 py-2 even:bg-slate-200 grid grid-cols-[1fr,1fr,5ch] items-center gap-x-4'
                 >
                   <span>{modifiers[index]}</span>
-                  <span>{formatTime(dateFromTime(result))}</span>
+                  <span className='text-right pr-6'>{formatTime(dateFromTime(result))}</span>
                   <button
                     onClick={() => removeModifier(index)}
                     className='font-bold p-2'
@@ -103,11 +119,11 @@ export default () => {
               placeholder="HH:MM"
               pattern="[\-0-9:hm ]+"
               ref={newModifierRef}
-              className="p-1 rounded-l"
+              className="p-1 rounded-l border border-blue-400"
             />
             <button
               type="submit"
-              className='py-1 px-4 bg-brand-orange-600 text-white rounded-r'
+              className='py-1 px-4 bg-blue-600 text-white rounded-r border border-blue-400'
             >
               Add
             </button>
@@ -116,7 +132,6 @@ export default () => {
           {modifiers.length === 0 && (
             <p className='my-6 text-center text-sm'>Add a time modifier <span className='block'>e.g. 4:00, 4h, 20m, -1:30</span></p>
           )}
-
         </div>
       </main>
     )

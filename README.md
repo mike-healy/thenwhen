@@ -4,6 +4,7 @@ A time adding UI
 ## Nice to haves
 - URL state
 - Keyboard mode for desktop?
+- SSR for a scootch of SEO
 
 ## React + TypeScript + Vite
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
