@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { amOrPm, base12Hours, stringToMinutes } from './functions'
+import { amOrPm, base12Hours, formatTimeForInput, stringToMinutes } from './functions'
 
 test.each([
   { hour: 0, result: 'am' },
@@ -13,7 +13,7 @@ test.each([
   d.setHours(hour);
 
   expect(amOrPm(d)).toBe(result);
-})
+});
 
 test.each([
   { modifier: '1:10', result: 70 },
@@ -42,7 +42,7 @@ test.each([
 ])
 ('modifier string $modifier to minutes', ({ modifier, result }) => {
   expect(stringToMinutes(modifier)).toBe(result)
-})
+});
 
 test.each([
   [9, 9],
@@ -51,4 +51,17 @@ test.each([
   [23, 11],
 ])('converts hour component %s to 12 base', (input, output) => {
   expect(base12Hours(input)).toBe(output)
-})
+});
+
+test.each([
+  [0, 0, '00:00'],
+  [3, 12, '03:12'],
+  [13, 0, '13:00'],
+  [23, 59, '23:59'],
+])('formats dates to HH:MM string for time input %d,%d -> %s', (hour, minute, expected) => {
+  const d = new Date()
+  d.setHours(hour)
+  d.setMinutes(minute)
+
+  expect(formatTimeForInput(d)).toBe(expected)
+});

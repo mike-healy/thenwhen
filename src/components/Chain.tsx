@@ -1,10 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { formatTime, stringToMinutes } from '../shared/functions.js'
+import { formatTime, formatTimeForInput, stringToMinutes } from '../shared/functions.js'
 
 export default () => {
     const newModifierRef = useRef(null);
 
     const [start, setStart] = useState(new Date().getTime());
+    const [initial, setInitial] = useState('');
     const [modifiers, setModifiers] = useState([]);
     const [changeCount, setChangeCount] = useState(0);
     const [stepResults, setStepResults] = useState([
@@ -30,6 +31,12 @@ export default () => {
 
       setStepResults(calculatedTimes);
 
+      // Default input to now on first render only
+      if (changeCount === 0) {
+        const now = new Date()
+        setInitial(formatTimeForInput(now))
+      }
+
     }, [modifiers, changeCount]);
 
     const addModifier = (value: string) => {
@@ -46,7 +53,7 @@ export default () => {
 
     const changeModifier = (value: string, index: number) => {};
 
-    const setStartTime = (e) => {
+    const changeStartTime = (e) => {
       const time = e.currentTarget.value.split(':')
 
       const start = new Date()
@@ -56,21 +63,24 @@ export default () => {
 
       setStart(start.getTime())
 
+      setInitial(formatTimeForInput(start))
+
       setChangeCount(changeCount + 1)
     };
 
-    // Cool, but it won't reflect in the UI because React is one-way
     const startFromNow = () => {
       const d = new Date()
       setStart(d.getTime())
+
+      setInitial(formatTimeForInput(d))
 
       setChangeCount(changeCount + 1)
     };
 
     return (
-      <main className="bg-gray-600 bg-gradient-to-tl from-brand-orange to-blue-300 via-blue-800 p-4 rounded-md max-w-96">
+      <main className="order-1 bg-gray-600 bg-gradient-to-tl from-brand-orange to-blue-300 via-blue-800 p-4 rounded-md max-w-96">
         <div className="shadow">
-          <header className="py-4 bg-gray-800 text-brand-orange rounded-t">
+          <header className="py-4 bg-gray-800/80 text-brand-orange rounded-t">
             <div className="grid grid-cols-[1fr,1fr,10ch] items-center gap-x-4">
               <span className="ps-4 border-b border-brand-orange"></span>
               <div>
@@ -83,6 +93,8 @@ export default () => {
                 <input
                   type="time"
                   id="startTime"
+                  value={initial}
+                  onChange={changeStartTime}
                   className="py-2 bg-transparent text-white"
                   style={{colorScheme: 'dark'}}
                 />

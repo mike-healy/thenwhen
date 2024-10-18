@@ -45,10 +45,13 @@ const base12Hours = (hours) => hours >= 13 ? hours - 12 : hours
 
 const formatTime = (date) => `${base12Hours(date.getHours())}:${zeroPad(date.getMinutes())} ${amOrPm(date)}`
 
+const formatTimeForInput = (date) => `${zeroPad(date.getHours())}:${zeroPad(date.getMinutes())}`
+
 export {
   amOrPm,
   stringToMinutes,
   formatTime,
+  formatTimeForInput,
   zeroPad,
   base12Hours,
 }
