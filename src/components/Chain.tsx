@@ -33,6 +33,10 @@ export default () => {
     }, [modifiers, changeCount]);
 
     const addModifier = (value: string) => {
+      if (isNaN(stringToMinutes(value))) {
+        return
+      }
+
       setModifiers([...modifiers, value])
     };
 
