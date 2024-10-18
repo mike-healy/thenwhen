@@ -83,8 +83,8 @@ export default () => {
                 <input
                   type="time"
                   id="startTime"
-                  onBlur={setStartTime}
-                  className="py-2 bg-gray-700/30"
+                  className="py-2 bg-transparent text-white"
+                  style={{colorScheme: 'dark'}}
                 />
               </div>
               <div className="pe-4 text-right">
