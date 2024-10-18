@@ -7,6 +7,6 @@ describe('Chain', () => {
   it('shows message to add modifier to chain', () => {
 		const { getByText } = render(<Chain />)
 
-    expect(getByText('Add a time modifier')).toBeInTheDocument()
+    expect(getByText('Add time modifiers')).toBeInTheDocument()
   });
 });

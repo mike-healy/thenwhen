@@ -68,7 +68,7 @@ export default () => {
     };
 
     return (
-      <main className="order-1 bg-gray-600 p-0.5 rounded-md max-w-96">
+      <main className="order-1 bg-gray-600 bg-gradient-to-tl from-brand-orange to-gray-300 via-blue-800 p-0.5 rounded-md max-w-96">
         <div>
           <header className='py-4 bg-gray-800 from-slate-900 to-slate-800 _bg-gradient-to-tr text-brand-orange rounded-t'>
             <label
@@ -78,80 +78,89 @@ export default () => {
               Start / end time
             </label>
             <div className='grid grid-cols-[1fr,1fr,10ch] items-center gap-x-4'>
-              <div className='ps-4'>…</div>
+              <div className='ps-4 border-b border-brand-orange'></div>
               <div>
-              <input
-                type="time"
-                id="startTime"
-                onBlur={setStartTime}
-                className='bg-transparent py-2'
-              />
+                <input
+                  type="time"
+                  id="startTime"
+                  onBlur={setStartTime}
+                  className='bg-transparent py-2'
+                />
               </div>
               <div className='pe-4 text-right'>
-              <button
-                onClick={startFromNow}
-                  className='px-2 py-.5 bg-brand-orange-100 text-gray-900 rounded text-sm'
-              >
-                now
-              </button>
+                <button
+                  onClick={startFromNow}
+                  className='px-2 py-.5 bg-brand-orange-100 text-gray-900 rounded-sm text-sm'
+                >
+                  now
+                </button>
               </div>
             </div>
           </header>
 
+          {modifiers.length === 0 && (
+            <article className='bg-gray-200 py-4 text-center font-bold'>
+              Add time modifiers
+            </article>
+          )}
           {stepResults.length > 0 && (
-            <ul className='mb-6 text-sm bg-gray-100'>
+            <ul className='bg-gray-100'>
               {stepResults.map((result, index) => (
                 <li
                   key={index}
                   className='even:bg-gray-200 grid grid-cols-[2rem,1fr,1fr,10ch] items-center gap-x-4'
                 >
-                  <div className="flex -my-6">
-                    <span className="border-r-2 border-gray-400 h-full w-8 _block table-cell">&nbsp;</span>
+                  <div
+                    aria-hidden={true}
+                    className="flex"
+                  >
+                    <span className="border-r border-gray-400 w-8 py-2 block __bg-gradient-to-tl from-gray-200 to-gray-100">&nbsp;</span>
                   </div>
                   <span className='ps-4'>{modifiers[index]}</span>
                   <span className='text-right pr-6'>{formatTime(dateFromTime(result))}</span>
-                  <div className='text-right py-2 pe-2'>
-                  <button
-                    onClick={() => removeModifier(index)}
+                  <div className='text-right pe-2'>
+                    <button
+                      onClick={() => removeModifier(index)}
                       className='font-bold px-2 py-1'
-                    >
-                    &#215;
-                  </button>
+                      >
+                      &#215;
+                    </button>
                   </div>
                 </li>
               ))}
-
             </ul>
-          )}
+            )}
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault()
-
-              addModifier(newModifierRef.current.value)
-              newModifierRef.current.value = ''
-              newModifierRef.current.focus()
-            }}
-            className='text-center md:p-2 my-4'
-          >
-            <input
-              type="text"
-              placeholder="HH:MM"
-              pattern="[\-0-9:hm ]+"
-              ref={newModifierRef}
-              className="p-1 rounded-l border border-blue-400"
-            />
-            <button
-              type="submit"
-              className='py-1 px-4 bg-blue-600 text-white rounded-r border border-blue-400'
+            <article
+              className='bg-gray-100 grid grid-cols-[2rem,1fr,1fr,10ch] items-center gap-x-4 rounded-b'
             >
-              Add
-            </button>
-          </form>
+              <form
+                onSubmit={(e) => {
+                e.preventDefault()
 
-          {modifiers.length === 0 && (
-            <p className='my-6 text-center text-sm'>Add a time modifier <span className='block'>e.g. 4:00, 4h, 20m, -1:30</span></p>
-          )}
+                addModifier(newModifierRef.current.value)
+                newModifierRef.current.value = ''
+                newModifierRef.current.focus()
+              }}
+              className='col-span-3 col-start-2 ps-4 my-4'
+            >
+              <input
+                type="text"
+                placeholder="HH:MM"
+                pattern="[\-0-9:hm ]+"
+                required
+                ref={newModifierRef}
+                className="p-1 rounded-l-sm border border-r-0 border-slate-400"
+              />
+              <button
+                type="submit"
+                aria-label="Add modifier to chain"
+                className='py-1 px-4 bg-slate-600 text-white rounded-r-sm border border-blue-400'
+              >
+                +
+              </button>
+            </form>
+          </article>
         </div>
       </main>
     )
