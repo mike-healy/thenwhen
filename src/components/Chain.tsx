@@ -64,43 +64,59 @@ export default () => {
     };
 
     return (
-      <main className="order-1 bg-slate-100 p-2 rounded-md max-w-96">
+      <main className="order-1 bg-gray-600 p-0.5 rounded-md max-w-96">
         <div>
-          <header className='px-6 py-4 from-slate-800 to-slate-700 bg-gradient-to-tr text-blue-400 rounded-t'>
-            <label htmlFor="startTime" className='block text-sm'>Start from or count to&hellip;</label>
-            <div className='flex justify-between items-center'>
+          <header className='py-4 bg-gray-800 from-slate-900 to-slate-800 _bg-gradient-to-tr text-brand-orange rounded-t'>
+            <label
+              htmlFor="startTime"
+              className='block text-center'
+            >
+              Start / end time
+            </label>
+            <div className='grid grid-cols-[1fr,1fr,10ch] items-center gap-x-4'>
+              <div className='ps-4'>…</div>
+              <div>
               <input
                 type="time"
                 id="startTime"
                 onBlur={setStartTime}
                 className='bg-transparent py-2'
               />
+              </div>
+              <div className='pe-4 text-right'>
               <button
                 onClick={startFromNow}
-                className='px-2 py-.5 bg-blue-200 text-blue-900 rounded text-sm'
+                  className='px-2 py-.5 bg-brand-orange-100 text-gray-900 rounded text-sm'
               >
                 now
               </button>
+              </div>
             </div>
           </header>
 
           {stepResults.length > 0 && (
-            <ul className='mb-6 text-sm'>
+            <ul className='mb-6 text-sm bg-gray-100'>
               {stepResults.map((result, index) => (
                 <li
                   key={index}
-                  className='px-6 py-2 even:bg-slate-200 grid grid-cols-[1fr,1fr,5ch] items-center gap-x-4'
+                  className='even:bg-gray-200 grid grid-cols-[2rem,1fr,1fr,10ch] items-center gap-x-4'
                 >
-                  <span>{modifiers[index]}</span>
+                  <div className="flex -my-6">
+                    <span className="border-r-2 border-gray-400 h-full w-8 _block table-cell">&nbsp;</span>
+                  </div>
+                  <span className='ps-4'>{modifiers[index]}</span>
                   <span className='text-right pr-6'>{formatTime(dateFromTime(result))}</span>
+                  <div className='text-right py-2 pe-2'>
                   <button
                     onClick={() => removeModifier(index)}
-                    className='font-bold p-2'
+                      className='font-bold px-2 py-1'
                     >
                     &#215;
                   </button>
+                  </div>
                 </li>
               ))}
+
             </ul>
           )}
 

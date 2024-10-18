@@ -4,7 +4,14 @@ A time adding UI
 ## Nice to haves
 - URL state
 - Keyboard mode for desktop?
+- Copy to clipboard
+- Apply labels?
 - SSR for a scootch of SEO
+
+## Tech ToDos
+- Restore the `-b` or whatever build flag to TypeScript check
+- …and therefore tighten up all the TS bits!
+- Proper feature tests
 
 ## React + TypeScript + Vite
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

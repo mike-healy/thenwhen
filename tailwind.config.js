@@ -16,8 +16,10 @@ export default {
         blue: colors.blue,
         red: colors.rose,
         slate: colors.slate,
+        gray: colors.zinc,
         'brand-orange': {
           50: '#fff0eb',
+          100: '#ffc6b3',
           300: '#fcc8b7',
           DEFAULT: '#f58d6b',
           400: '#f58d6b',
