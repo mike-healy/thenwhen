@@ -68,29 +68,29 @@ export default () => {
     };
 
     return (
-      <main className="order-1 bg-gray-600 bg-gradient-to-tl from-brand-orange to-gray-300 via-blue-800 p-0.5 rounded-md max-w-96">
-        <div>
-          <header className='py-4 bg-gray-800 from-slate-900 to-slate-800 _bg-gradient-to-tr text-brand-orange rounded-t'>
-            <label
-              htmlFor="startTime"
-              className='block text-center'
-            >
-              Start / end time
-            </label>
-            <div className='grid grid-cols-[1fr,1fr,10ch] items-center gap-x-4'>
-              <div className='ps-4 border-b border-brand-orange'></div>
+      <main className="bg-gray-600 bg-gradient-to-tl from-brand-orange to-blue-300 via-blue-800 p-4 rounded-md max-w-96">
+        <div className="shadow">
+          <header className="py-4 bg-gray-800 text-brand-orange rounded-t">
+            <div className="grid grid-cols-[1fr,1fr,10ch] items-center gap-x-4">
+              <span className="ps-4 border-b border-brand-orange"></span>
               <div>
+                <label
+                  htmlFor="startTime"
+                  className="block"
+                >
+                  Start / End
+                </label>
                 <input
                   type="time"
                   id="startTime"
                   onBlur={setStartTime}
-                  className='bg-transparent py-2'
+                  className="py-2 bg-gray-700/30"
                 />
               </div>
-              <div className='pe-4 text-right'>
+              <div className="pe-4 text-right">
                 <button
                   onClick={startFromNow}
-                  className='px-2 py-.5 bg-brand-orange-100 text-gray-900 rounded-sm text-sm'
+                  className="px-2 py-.5 bg-brand-orange-100 text-gray-900 rounded-sm text-sm"
                 >
                   now
                 </button>
@@ -99,29 +99,30 @@ export default () => {
           </header>
 
           {modifiers.length === 0 && (
-            <article className='bg-gray-200 py-4 text-center font-bold'>
+            <article className="bg-gray-200 py-2 text-center font-bold">
               Add time modifiers
             </article>
           )}
+
           {stepResults.length > 0 && (
-            <ul className='bg-gray-100'>
+            <ul className="bg-gray-100">
               {stepResults.map((result, index) => (
                 <li
                   key={index}
-                  className='even:bg-gray-200 grid grid-cols-[2rem,1fr,1fr,10ch] items-center gap-x-4'
+                  className="even:bg-gray-200 grid grid-cols-[2rem,1fr,1fr,10ch] items-center gap-x-4"
                 >
                   <div
-                    aria-hidden={true}
+                    aria-hidden="true"
                     className="flex"
                   >
                     <span className="border-r border-gray-400 w-8 py-2 block __bg-gradient-to-tl from-gray-200 to-gray-100">&nbsp;</span>
                   </div>
-                  <span className='ps-4'>{modifiers[index]}</span>
-                  <span className='text-right pr-6'>{formatTime(dateFromTime(result))}</span>
-                  <div className='text-right pe-2'>
+                  <span className="ps-4">{modifiers[index]}</span>
+                  <span className="text-right pr-6">{formatTime(dateFromTime(result))}</span>
+                  <div className="text-right pe-2">
                     <button
                       onClick={() => removeModifier(index)}
-                      className='font-bold px-2 py-1'
+                      className="font-bold px-2 py-1"
                       >
                       &#215;
                     </button>
@@ -129,10 +130,10 @@ export default () => {
                 </li>
               ))}
             </ul>
-            )}
+          )}
 
             <article
-              className='bg-gray-100 grid grid-cols-[2rem,1fr,1fr,10ch] items-center gap-x-4 rounded-b'
+              className="bg-gray-100 grid grid-cols-[2rem,1fr,1fr,10ch] items-center gap-x-4 rounded-b"
             >
               <form
                 onSubmit={(e) => {
@@ -142,7 +143,7 @@ export default () => {
                 newModifierRef.current.value = ''
                 newModifierRef.current.focus()
               }}
-              className='col-span-3 col-start-2 ps-4 my-4'
+              className="col-span-3 col-start-2 ps-4 my-4"
             >
               <input
                 type="text"
@@ -155,7 +156,7 @@ export default () => {
               <button
                 type="submit"
                 aria-label="Add modifier to chain"
-                className='py-1 px-4 bg-slate-600 text-white rounded-r-sm border border-blue-400'
+                className="py-1 px-4 bg-slate-600 text-white rounded-r-sm border border-blue-400"
               >
                 +
               </button>
