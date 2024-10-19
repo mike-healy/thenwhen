@@ -78,10 +78,10 @@ export default () => {
     };
 
     return (
-      <main className="order-1 bg-gray-600 bg-gradient-to-tl from-brand-orange to-blue-300 via-blue-800 p-4 rounded-md max-w-96">
+      <main className="order-1 bg-gray-600 bg-gradient-to-tl from-brand-orange to-blue-300 via-blue-800 p-1 sm:p-4 rounded-md max-w-96">
         <div className="shadow">
           <header className="py-4 bg-gray-800/80 text-brand-orange rounded-t">
-            <div className="grid grid-cols-[1fr,1fr,10ch] items-center gap-x-4">
+            <div className="grid grid-cols-[1fr,1fr,8ch] items-center gap-x-2 sm:gap-x-4">
               <span className="ps-4 border-b border-brand-orange"></span>
               <div>
                 <label
@@ -99,7 +99,7 @@ export default () => {
                   style={{colorScheme: 'dark'}}
                 />
               </div>
-              <div className="pe-4 text-right">
+              <div className="pe-2 sm:pe-4 text-right">
                 <button
                   onClick={startFromNow}
                   className="px-2 py-.5 bg-brand-orange-100 text-gray-900 rounded-sm text-sm"
@@ -117,11 +117,11 @@ export default () => {
           )}
 
           {stepResults.length > 0 && (
-            <ul className="bg-gray-100">
+            <ul className="bg-gray-100 text-sm md:text-base">
               {stepResults.map((result, index) => (
                 <li
                   key={index}
-                  className="even:bg-gray-200 grid grid-cols-[2rem,1fr,1fr,10ch] items-center gap-x-4"
+                  className="even:bg-gray-200 grid grid-cols-[2rem,1fr,1fr,10ch] items-center gap-x-2 sm:gap-x-4"
                 >
                   <div
                     aria-hidden="true"
@@ -129,8 +129,8 @@ export default () => {
                   >
                     <span className="border-r border-gray-400 w-8 py-2 block __bg-gradient-to-tl from-gray-200 to-gray-100">&nbsp;</span>
                   </div>
-                  <span className="ps-4">{modifiers[index]}</span>
-                  <span className="text-right pr-6">{formatTime(dateFromTime(result))}</span>
+                  <span className="ps-2 md:ps-4">{modifiers[index]}</span>
+                  <span className="text-right pe-2 md:pe-4">{formatTime(dateFromTime(result))}</span>
                   <div className="text-right pe-2">
                     <button
                       onClick={() => removeModifier(index)}
@@ -145,7 +145,7 @@ export default () => {
           )}
 
             <article
-              className="bg-gray-100 grid grid-cols-[2rem,1fr,1fr,10ch] items-center gap-x-4 rounded-b"
+              className="bg-gray-100 grid grid-cols-[2rem,1fr,1fr,8ch] items-center gap-x-4 rounded-b"
             >
               <form
                 onSubmit={(e) => {
