@@ -82,14 +82,18 @@ export default () => {
         <div className="shadow">
           <header className="py-4 bg-gray-800/80 text-brand-orange rounded-t">
             <div className="grid grid-cols-[1fr,1fr,8ch] items-center gap-x-2 sm:gap-x-4">
+              <span />
+              <label
+                htmlFor="startTime"
+                className="block"
+              >
+                Start / End
+              </label>
+              <span />
+            </div>
+            <div className="grid grid-cols-[1fr,1fr,8ch] items-center gap-x-2 sm:gap-x-4">
               <span className="ps-4 border-b border-brand-orange"></span>
               <div>
-                <label
-                  htmlFor="startTime"
-                  className="block"
-                >
-                  Start / End
-                </label>
                 <input
                   type="time"
                   id="startTime"
@@ -127,7 +131,7 @@ export default () => {
                     aria-hidden="true"
                     className="flex"
                   >
-                    <span className="border-r border-gray-400 w-8 py-2 block __bg-gradient-to-tl from-gray-200 to-gray-100">&nbsp;</span>
+                    <span className="border-r border-gray-400 w-8 py-2 block">&nbsp;</span>
                   </div>
                   <span className="ps-2 md:ps-4">{modifiers[index]}</span>
                   <span className="text-right pe-2 md:pe-4">{formatTime(dateFromTime(result))}</span>
@@ -145,7 +149,7 @@ export default () => {
           )}
 
             <article
-              className="bg-gray-100 grid grid-cols-[2rem,1fr,1fr,8ch] items-center gap-x-4 rounded-b"
+              className="bg-gray-100 grid grid-cols-[2rem,1fr,1fr,8ch] items-center gap-x-2 sm:gap-x-4 rounded-b"
             >
               <form
                 onSubmit={(e) => {
@@ -155,7 +159,7 @@ export default () => {
                 newModifierRef.current.value = ''
                 newModifierRef.current.focus()
               }}
-              className="col-span-3 col-start-2 ps-4 my-4"
+              className="col-span-3 col-start-2 my-4"
             >
               <input
                 type="text"
