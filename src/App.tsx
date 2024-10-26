@@ -1,17 +1,33 @@
 import './App.css'
 import Chain from './components/Chain'
+import ExampleModifier from './components/ExampleModifier'
 
 function App() {
   return (
-    <div className='flex flex-col gap-y-8 md:grid grid-cols-2 gap-x-16'>
-      <section className="order-2">
-        <h1 className='text-brand-orange text-xl'>Then When</h1>
-        <p className='text-slate-300 font-light'>
-          Add time increments such as 1:00 for 1 hour, -2:30 for minus 2&frac12; hours etc…
-        </p>
-      </section>
+    <div className='min-h-svh flex flex-col gap-y-8'>
+      <div className="grow flex flex-col justify-center place-items-center gap-y-12 md:gap-y-24 mt-8 md:mt-12">
 
-      <Chain />
+        <Chain />
+
+        <section className="">
+          <h1 className='flex items-center gap-x-2 mb-2 text-brand-orange text-xl'>
+            <img
+              src="icon.svg"
+              width="32"
+              height="32"
+              alt="icon"
+            />
+            Then When
+          </h1>
+          <p className='text-slate-300 font-light'>
+            Chain steps forwards or backwards in time.<br />
+            Add modifiers like <ExampleModifier value="1h 30m"/>, <ExampleModifier value="2:10"/>, <ExampleModifier value="-0:35"/>
+          </p>
+        </section>
+      </div>
+      <footer className="py-4 md:py-8 text-sm text-slate-400">
+        by <a href="https://www.mikehealy.com.au" className='text-brand-orange-400/80 decoration-brand-orange-400 underline'>Mike Healy</a>
+      </footer>
     </div>
   )
 }

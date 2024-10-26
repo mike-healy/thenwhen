@@ -78,7 +78,7 @@ export default () => {
     };
 
     return (
-      <main className="order-1 bg-gray-600 bg-gradient-to-tl from-brand-orange to-blue-300 via-blue-800 p-1 sm:p-4 rounded-md max-w-96">
+      <main className="bg-gray-600 bg-gradient-to-tl from-brand-orange to-blue-300 via-blue-800 p-1 sm:p-4 rounded-md max-w-96">
         <div className="shadow">
           <header className="py-4 bg-gray-800/80 text-brand-orange rounded-t">
             <div className="grid grid-cols-[1fr,1fr,8ch] items-center gap-x-2 sm:gap-x-4">
