@@ -6,7 +6,7 @@ export default () => {
 
   const [start, setStart] = useState(new Date().getTime());
   const [initial, setInitial] = useState('');
-  const [modifiers, setModifiers] = useState(['03:22', '0:22']);
+  const [modifiers, setModifiers] = useState([]);
   const [changeCount, setChangeCount] = useState(0);
   const [stepResults, setStepResults] = useState([
     new Date().getTime(),
@@ -111,7 +111,7 @@ export default () => {
             <div className="pe-2 sm:pe-4 text-right">
               <button
                 onClick={startFromNow}
-                className="px-2 py-.5 bg-brand-orange-100 text-gray-900 rounded-sm text-sm"
+                className="px-2 py-.5 text-gray-300 decoration-gray-500 underline text-sm"
               >
                 now
               </button>
