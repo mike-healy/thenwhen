@@ -43,7 +43,13 @@ const zeroPad = (part) => part < 10 ? `0${part}` : part
 
 const base12Hours = (hours) => hours >= 13 ? hours - 12 : hours
 
-const formatTime = (date) => `${base12Hours(date.getHours())}:${zeroPad(date.getMinutes())} ${amOrPm(date)}`
+const formatTime = (date) => {
+  if (date.getHours() === 0) {
+    return `12:${zeroPad(date.getMinutes())} ${amOrPm(date)}`
+  }
+
+  return `${base12Hours(date.getHours())}:${zeroPad(date.getMinutes())} ${amOrPm(date)}`
+}
 
 const formatTimeForInput = (date) => `${zeroPad(date.getHours())}:${zeroPad(date.getMinutes())}`
 

@@ -1,5 +1,11 @@
 import { expect, test } from 'vitest'
-import { amOrPm, base12Hours, formatTimeForInput, stringToMinutes } from './functions'
+import {
+  amOrPm,
+  base12Hours,
+  formatTimeForInput,
+  formatTime,
+  stringToMinutes,
+} from './functions'
 
 test.each([
   { hour: 0, result: 'am' },
@@ -8,7 +14,7 @@ test.each([
   { hour: 12, result: 'pm' },
   { hour: 23, result: 'pm' },
 ])
-('returns $result for hour $hour', ({ hour, result }) => {
+('returns am/pm $result for hour $hour', ({ hour, result }) => {
   let d = new Date();
   d.setHours(hour);
 
@@ -64,4 +70,18 @@ test.each([
   d.setMinutes(minute)
 
   expect(formatTimeForInput(d)).toBe(expected)
+});
+
+test.each([
+  [14, 30, '2:30 pm'],
+  [10, 15, '10:15 am'],
+  [12, 59, '12:59 pm'],
+  [1, 15, '1:15 am'],
+  [0, 5, '12:05 am'],
+])
+('formats times %d:%d to be rad and awesome', (hours, minutes, result) => {
+  const d = new Date();
+  d.setHours(hours);
+  d.setMinutes(minutes);
+  expect(formatTime(d)).toBe(result);
 });

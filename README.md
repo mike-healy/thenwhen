@@ -1,16 +1,19 @@
 # Then When
 A time adding UI
 
+## To Do
+- Try to improve alignment of modifiers vs start time on mobile device (diff width `time` input)
+- Edit existing modifier
+
 ## Nice to haves
 - URL state
-- Keyboard mode for desktop?
 - Copy to clipboard
 - Apply labels?
 - SSR for a scootch of SEO
 
 ## Tech ToDos
 - Restore the `-b` or whatever build flag to TypeScript check
-- …and therefore tighten up all the TS bits!
+- …and therefore tighten up all the TypeScript bits!
 - Proper feature tests
 
 ## React + TypeScript + Vite
