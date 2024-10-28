@@ -92,7 +92,7 @@ export default () => {
             <span />
           </div>
           <div className="h-8 grid grid-cols-[1fr,1fr,8ch] items-center gap-x-2 sm:gap-x-4">
-            <div className="-mb-6 flex items-start">
+            <div className="-mb-6 flex items-start" aria-hidden="true">
               <div className="w-8 h-8 border-r border-brand-orange"></div>
               <div className="ps-4 border-b border-brand-orange">
               </div>
@@ -130,6 +130,7 @@ export default () => {
             {stepResults.map((result, index) => (
               <li
                 key={index}
+                id={`modifier_${index}`}
                 className="even:bg-gray-200 grid grid-cols-[2rem,1fr,1fr,10ch] items-center gap-x-2 sm:gap-x-4"
               >
                 <div
@@ -138,12 +139,15 @@ export default () => {
                 >
                   <span className="border-r border-gray-400 w-8 py-2 block">&nbsp;</span>
                 </div>
-                <span className="ps-2 md:ps-4">{modifiers[index]}</span>
-                <span className="text-right pe-2 md:pe-4">{formatTime(dateFromTime(result))}</span>
+                <div className="ps-2 md:ps-4">{modifiers[index]}</div>
+                <div className="text-right pe-2 md:pe-4">{formatTime(dateFromTime(result))}</div>
                 <div className="text-right pe-2">
                   <button
                     onClick={() => removeModifier(index)}
                     className="font-bold px-2 py-1"
+                    aria-controls={`modifier_${index}`}
+                    aria-label={`Delete ${modifiers[index]}`}
+                    title={`Delete ${modifiers[index]}`}
                   >
                     &#215;
                   </button>
