@@ -53,6 +53,25 @@ const formatTime = (date) => {
 
 const formatTimeForInput = (date) => `${zeroPad(date.getHours())}:${zeroPad(date.getMinutes())}`
 
+const formatModifier = (modifier) => {
+  if (!modifier) {
+    return ''
+  }
+
+  let mins = stringToMinutes(modifier)
+  const negative = mins <= 0
+  mins = Math.abs(mins)
+
+  const formatReturn = (value) => negative ? `-${value}` : value
+
+  if (mins < 60) {
+    return formatReturn(`0h ${mins}m`)
+  }
+
+  const hours = Math.floor(mins/60)
+  return formatReturn(`${hours}h ${mins-hours*60}m`)
+}
+
 export {
   amOrPm,
   stringToMinutes,
@@ -60,4 +79,5 @@ export {
   formatTimeForInput,
   zeroPad,
   base12Hours,
+  formatModifier,
 }

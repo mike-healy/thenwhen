@@ -5,6 +5,7 @@ import {
   formatTimeForInput,
   formatTime,
   stringToMinutes,
+  formatModifier,
 } from './functions'
 
 test.each([
@@ -84,4 +85,15 @@ test.each([
   d.setHours(hours);
   d.setMinutes(minutes);
   expect(formatTime(d)).toBe(result);
+});
+
+test.each([
+  ['', ''],
+  ['3m', '0h 3m'],
+  ['1', '1h 0m'],
+  ['1:10', '1h 10m'],
+  ['-2h 5m', '-2h 5m'],
+])
+('formats modifier value for consistent display', (input, result) => {
+  expect(formatModifier(input)).toBe(result);
 });

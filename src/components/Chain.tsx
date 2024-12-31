@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { formatTime, formatTimeForInput, stringToMinutes } from '../shared/functions.js'
+import { formatTime, formatTimeForInput, stringToMinutes, formatModifier } from '../shared/functions.js'
 
 export default () => {
   const newModifierRef = useRef(null);
@@ -142,7 +142,7 @@ export default () => {
                 >
                   <span className="border-r border-gray-400 w-8 py-2 block">&nbsp;</span>
                 </div>
-                <div className="ps-2 md:ps-4">{modifiers[index]}</div>
+                <div className="ps-2 md:ps-4">{formatModifier(modifiers[index])}</div>
                 <div className="text-right pe-2 md:pe-4">{formatTime(dateFromTime(result))}</div>
                 <div className="text-right pe-2">
                   <button
