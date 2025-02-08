@@ -1,0 +1,31 @@
+{
+  "short_name": "Then When",
+  "name": "Then When",
+  "description": "Calculate a string of times",
+  "icons": [
+    {
+      "src": "/icon_192-any.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon_512-any.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon_512-maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#20293A",
+  "display_override": ["standalone", "minimal-ui", "fullscreen", "browser"],
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#20293A"
+}
