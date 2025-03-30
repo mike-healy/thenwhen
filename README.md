@@ -2,13 +2,11 @@
 A time adding UI
 
 ## To Do
-- Try to improve alignment of modifiers vs start time on mobile device (diff width `time` input)
-- Edit existing modifier
+- Improve alignment of modifiers vs start time on mobile device (diff width `time` input)
 
 ## Nice to haves
 - URL state
 - Copy to clipboard
-- Apply labels?
 - SSR for a scootch of SEO
 
 ## Tech ToDos

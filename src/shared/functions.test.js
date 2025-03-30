@@ -6,6 +6,7 @@ import {
   formatTime,
   stringToMinutes,
   formatModifier,
+  minutesToHM,
 } from './functions'
 
 test.each([
@@ -96,4 +97,16 @@ test.each([
 ])
 ('formats modifier value for consistent display', (input, result) => {
   expect(formatModifier(input)).toBe(result);
+});
+
+test.each([
+  [1, '1m'],
+  [60, '1h 0m'],
+  [67, '1h 7m'],
+  [90, '1h 30m'],
+  [-10, '-10m'],
+  [-60, '-1h 0m'],
+  [-90, '-1h 30m'],
+])('formats minutes to hh:mm string', (input, result) => {
+  expect(minutesToHM(input)).toBe(result);
 });

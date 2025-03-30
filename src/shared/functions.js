@@ -72,6 +72,20 @@ const formatModifier = (modifier) => {
   return formatReturn(`${hours}h ${mins-hours*60}m`)
 }
 
+const minutesToHM = (minutes) => {
+  const sign = minutes < 0 ? '-' : '';
+  minutes = Math.abs(minutes);
+
+  if (minutes < 60) {
+    return `${sign}${minutes}m`;
+  }
+
+  const hours = Math.floor(minutes / 60);
+  minutes = minutes % 60;
+
+  return `${sign}${hours}h ${minutes}m`;
+};
+
 export {
   amOrPm,
   stringToMinutes,
@@ -80,4 +94,5 @@ export {
   zeroPad,
   base12Hours,
   formatModifier,
+  minutesToHM,
 }

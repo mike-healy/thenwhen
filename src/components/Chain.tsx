@@ -1,5 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { formatTime, formatTimeForInput, stringToMinutes, formatModifier } from '../shared/functions.js'
+import React, { useRef, useState, useEffect } from 'react';
+import Total from './Total.js';
+import {
+  formatTime,
+  formatTimeForInput,
+  stringToMinutes,
+  formatModifier,
+} from '../shared/functions.js'
 
 export default () => {
   const newModifierRef = useRef(null);
@@ -11,6 +17,7 @@ export default () => {
   const [stepResults, setStepResults] = useState([
     new Date().getTime(),
   ]);
+  const [totalMinutes, setTotalMinutes] = useState(0);
 
   const dateFromTime = (time: number) => {
     const d = new Date()
@@ -20,23 +27,25 @@ export default () => {
 
   useEffect(() => {
     const calculatedTimes = [];
+    let total = 0;
 
     if (modifiers.length > 0) {
       modifiers.reduce((upTo: number, modifier: string) => {
         const nextStop = upTo + (stringToMinutes(modifier) * 60_000);
         calculatedTimes.push(nextStop)
+        total += stringToMinutes(modifier);
         return nextStop
       }, start);
     }
 
     setStepResults(calculatedTimes);
+    setTotalMinutes(total)
 
     // Default input to now on first render only
     if (changeCount === 0) {
       const now = new Date()
       setInitial(formatTimeForInput(now))
     }
-
   }, [modifiers, changeCount]);
 
   const addModifier = (value: string) => {
@@ -96,7 +105,7 @@ export default () => {
           </div>
           <div className="h-8 grid grid-cols-[1fr,1fr,8ch] items-center gap-x-2 sm:gap-x-4">
             <div className="-mb-6 flex items-start" aria-hidden="true">
-              <div className="w-8 h-8 border-r border-brand-orange"></div>
+              <div className="size-8 border-r border-brand-orange"></div>
               <div className="ps-4 border-b border-brand-orange">
               </div>
             </div>
@@ -136,15 +145,18 @@ export default () => {
                 id={`modifier_${index}`}
                 className="even:bg-gray-200 grid grid-cols-[2rem,1fr,1fr,10ch] items-center gap-x-2 sm:gap-x-4"
               >
-                <div
-                  aria-hidden="true"
-                  className="flex"
-                >
-                  <span className="border-r border-gray-400 w-8 py-2 block">&nbsp;</span>
+                <div aria-hidden='true' className='flex'>
+                  <span className='border-r border-gray-400 w-8 py-2 block'>
+                    &nbsp;
+                  </span>
                 </div>
-                <div className="ps-2 md:ps-4">{formatModifier(modifiers[index])}</div>
-                <div className="text-right pe-2 md:pe-4">{formatTime(dateFromTime(result))}</div>
-                <div className="text-right pe-2">
+                <div className='ps-2 md:ps-4'>
+                  {formatModifier(modifiers[index])}
+                </div>
+                <div className='text-right pe-2 md:pe-4'>
+                  {formatTime(dateFromTime(result))}
+                </div>
+                <div className='text-right pe-2'>
                   <button
                     onClick={() => removeModifier(index)}
                     className="font-bold px-2 py-1"
@@ -157,6 +169,7 @@ export default () => {
                 </div>
               </li>
             ))}
+            {modifiers.length > 1 && <Total minutes={totalMinutes} />}
           </ul>
         )}
 
