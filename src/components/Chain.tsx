@@ -5,7 +5,7 @@ import {
   formatTimeForInput,
   stringToMinutes,
   formatModifier,
-} from '../shared/functions.js'
+} from '../shared/functions.ts'
 
 export default () => {
   const newModifierRef = useRef(null);

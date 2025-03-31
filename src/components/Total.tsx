@@ -1,5 +1,5 @@
 import React from 'react'
-import { minutesToHM } from '../shared/functions.js'
+import { minutesToHM } from '../shared/functions.ts'
 
 interface TotalProps {
   minutes: number;
